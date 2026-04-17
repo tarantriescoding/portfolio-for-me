@@ -168,7 +168,7 @@ export default function AdminLogin({ onSuccess, onCancel }: AdminLoginProps) {
             <Button
               variant="ghost"
               size="sm"
-              onClick={handleLoginCancel}
+              onClick={onCancel}
               className="text-zinc-600 hover:text-zinc-400 font-mono text-xs"
             >
               {'< '}Back to Portfolio
