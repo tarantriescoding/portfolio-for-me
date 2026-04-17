@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Profile {
+  id          String   @id @default(cuid())
+  name        String   @default("Your Name")
+  title       String   @default("B.Tech CSE Student | AI/ML Enthusiast")
+  bio         String   @default("Passionate about AI, Machine Learning, and building innovative tech solutions.")
+  avatarUrl   String   @default("")
+  resumeUrl   String   @default("")
+  github      String   @default("")
+  linkedin    String   @default("")
+  twitter     String   @default("")
+  email       String   @default("")
+  phone       String   @default("")
+  location    String   @default("")
+  website     String   @default("")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Skill {
+  id       String   @id @default(cuid())
+  name     String
+  category String   @default("programming")
+  level    Int      @default(80)
+  icon     String   @default("")
+  order    Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Project {
+  id         String   @id @default(cuid())
+  title      String
+  description String
+  imageUrl   String   @default("")
+  githubUrl  String   @default("")
+  liveUrl    String   @default("")
+  techStack  String   @default("[]")
+  featured   Boolean  @default(false)
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Education {
+  id          String   @id @default(cuid())
+  degree      String
+  institution String
+  field       String   @default("")
+  startYear   String
+  endYear     String   @default("")
+  grade       String   @default("")
+  description String   @default("")
+  logoUrl     String   @default("")
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Experience {
+  id          String   @id @default(cuid())
+  company     String
+  position    String
+  startDate   String
+  endDate     String   @default("")
+  current     Boolean  @default(false)
+  description String   @default("")
+  techStack   String   @default("[]")
+  logoUrl     String   @default("")
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BlogPost {
+  id         String   @id @default(cuid())
+  title      String
+  slug       String   @unique
+  content    String   @default("")
+  excerpt    String   @default("")
+  coverImage String   @default("")
+  published  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String   @default("")
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
