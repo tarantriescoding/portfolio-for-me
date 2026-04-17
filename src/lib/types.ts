@@ -83,6 +83,19 @@ export interface BlogPostData {
   updatedAt: string;
 }
 
+export interface AchievementData {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  category: string;
+  icon: string;
+  credentialUrl: string;
+  order: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface ContactMessageData {
   id: string;
   name: string;
@@ -100,6 +113,7 @@ export interface DashboardStats {
   publishedBlogPosts: number;
   totalEducation: number;
   totalExperience: number;
+  totalAchievements: number;
   unreadMessages: number;
   totalMessages: number;
 }

@@ -10,6 +10,7 @@ export async function GET() {
       publishedBlogPosts,
       totalEducation,
       totalExperience,
+      totalAchievements,
       unreadMessages,
       totalMessages,
     ] = await Promise.all([
@@ -19,6 +20,7 @@ export async function GET() {
       db.blogPost.count({ where: { published: true } }),
       db.education.count(),
       db.experience.count(),
+      db.achievement.count(),
       db.contactMessage.count({ where: { isRead: false } }),
       db.contactMessage.count(),
     ]);
@@ -30,6 +32,7 @@ export async function GET() {
       publishedBlogPosts,
       totalEducation,
       totalExperience,
+      totalAchievements,
       unreadMessages,
       totalMessages,
     });

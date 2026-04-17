@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { toast } from 'sonner';
-import { ArrowLeft, Shield } from 'lucide-react';
+import { ArrowLeft, Shield, LogOut } from 'lucide-react';
 import { AdminSidebar } from './AdminSidebar';
 import { DashboardView } from './DashboardView';
 import { ProfileEditor } from './ProfileEditor';
@@ -12,6 +12,7 @@ import { SkillsManager } from './SkillsManager';
 import { ProjectsManager } from './ProjectsManager';
 import { EducationManager } from './EducationManager';
 import { ExperienceManager } from './ExperienceManager';
+import { AchievementsManager } from './AchievementsManager';
 import { BlogManager } from './BlogManager';
 import { MessagesManager } from './MessagesManager';
 import type {
@@ -20,6 +21,7 @@ import type {
   ProjectData,
   EducationData,
   ExperienceData,
+  AchievementData,
   BlogPostData,
   DashboardStats,
 } from '@/lib/types';
@@ -38,6 +40,7 @@ export function AdminPanel({ profile }: AdminPanelProps) {
   const [education, setEducation] = useState<EducationData[]>([]);
   const [experience, setExperience] = useState<ExperienceData[]>([]);
   const [blogPosts, setBlogPosts] = useState<BlogPostData[]>([]);
+  const [achievements, setAchievements] = useState<AchievementData[]>([]);
   const [dataLoading, setDataLoading] = useState(false);
 
   const fetchStats = useCallback(async () => {
@@ -56,22 +59,24 @@ export function AdminPanel({ profile }: AdminPanelProps) {
   const fetchAllData = useCallback(async () => {
     setDataLoading(true);
     try {
-      const [skillsRes, projectsRes, eduRes, expRes, blogRes, profileRes] = await Promise.all([
+      const [skillsRes, projectsRes, eduRes, expRes, blogRes, profileRes, achRes] = await Promise.all([
         fetch('/api/skills'),
         fetch('/api/projects'),
         fetch('/api/education'),
         fetch('/api/experience'),
         fetch('/api/blog'),
         fetch('/api/profile'),
+        fetch('/api/achievements'),
       ]);
 
-      const [skillsData, projectsData, eduData, expData, blogData, profileNew] = await Promise.all([
+      const [skillsData, projectsData, eduData, expData, blogData, profileNew, achData] = await Promise.all([
         skillsRes.json(),
         projectsRes.json(),
         eduRes.json(),
         expRes.json(),
         blogRes.json(),
         profileRes.json(),
+        achRes.json(),
       ]);
 
       setSkills(Array.isArray(skillsData) ? skillsData : []);
@@ -79,6 +84,7 @@ export function AdminPanel({ profile }: AdminPanelProps) {
       setEducation(Array.isArray(eduData) ? eduData : []);
       setExperience(Array.isArray(expData) ? expData : []);
       setBlogPosts(Array.isArray(blogData) ? blogData : []);
+      setAchievements(Array.isArray(achData) ? achData : []);
       if (profileNew && !Array.isArray(profileNew)) {
         setProfileData(profileNew);
       }
@@ -128,6 +134,8 @@ export function AdminPanel({ profile }: AdminPanelProps) {
         return <ExperienceManager experience={experience} onUpdated={handleDataUpdated} />;
       case 'blog':
         return <BlogManager posts={blogPosts} onUpdated={handleDataUpdated} />;
+      case 'achievements':
+        return <AchievementsManager achievements={achievements} onUpdated={handleDataUpdated} />;
       case 'messages':
         return <MessagesManager />;
       default:
@@ -154,15 +162,29 @@ export function AdminPanel({ profile }: AdminPanelProps) {
               <h1 className="text-lg font-semibold text-foreground">Admin Panel</h1>
             </div>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="text-muted-foreground hover:text-foreground"
-            onClick={() => window.location.hash = ''}
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Portfolio
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-muted-foreground hover:text-foreground"
+              onClick={() => window.location.hash = ''}
+            >
+              <ArrowLeft className="h-4 w-4" />
+              <span className="hidden sm:inline">Back to Portfolio</span>
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-muted-foreground hover:text-red-400"
+              onClick={() => {
+                sessionStorage.removeItem('admin_auth');
+                window.location.hash = '';
+              }}
+            >
+              <LogOut className="h-4 w-4" />
+              <span className="hidden sm:inline">Logout</span>
+            </Button>
+          </div>
         </header>
 
         {/* Content */}

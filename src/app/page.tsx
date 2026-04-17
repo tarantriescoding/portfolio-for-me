@@ -3,13 +3,15 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
-import { Shield, Loader2 } from 'lucide-react';
+import { Shield } from 'lucide-react';
 import { AdminPanel } from '@/components/admin/AdminPanel';
+import AdminLogin from '@/components/admin/AdminLogin';
 import PortfolioNav from '@/components/portfolio/PortfolioNav';
 import HeroSection from '@/components/portfolio/HeroSection';
 import AboutSection from '@/components/portfolio/AboutSection';
 import SkillsSection from '@/components/portfolio/SkillsSection';
 import ProjectsSection from '@/components/portfolio/ProjectsSection';
+import AchievementsSection from '@/components/portfolio/AchievementsSection';
 import EducationSection from '@/components/portfolio/EducationSection';
 import ExperienceSection from '@/components/portfolio/ExperienceSection';
 import BlogSection from '@/components/portfolio/BlogSection';
@@ -19,6 +21,7 @@ import type {
   ProfileData,
   SkillData,
   ProjectData,
+  AchievementData,
   EducationData,
   ExperienceData,
   BlogPostData,
@@ -31,7 +34,7 @@ function PortfolioSkeleton() {
       <div className="h-16 border-b border-zinc-800 flex items-center justify-between px-8">
         <Skeleton className="h-6 w-32 bg-zinc-800" />
         <div className="hidden lg:flex gap-4">
-          {[...Array(7)].map((_, i) => (
+          {[...Array(8)].map((_, i) => (
             <Skeleton key={i} className="h-4 w-16 bg-zinc-800" />
           ))}
         </div>
@@ -51,10 +54,13 @@ function PortfolioSkeleton() {
 
 export default function Home() {
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [skills, setSkills] = useState<SkillData[]>([]);
   const [projects, setProjects] = useState<ProjectData[]>([]);
+  const [achievements, setAchievements] = useState<AchievementData[]>([]);
   const [education, setEducation] = useState<EducationData[]>([]);
   const [experience, setExperience] = useState<ExperienceData[]>([]);
   const [blogPosts, setBlogPosts] = useState<BlogPostData[]>([]);
@@ -62,19 +68,21 @@ export default function Home() {
   const fetchAllData = useCallback(async () => {
     setLoading(true);
     try {
-      const [profileRes, skillsRes, projectsRes, eduRes, expRes, blogRes] = await Promise.all([
+      const [profileRes, skillsRes, projectsRes, achRes, eduRes, expRes, blogRes] = await Promise.all([
         fetch('/api/profile'),
         fetch('/api/skills'),
         fetch('/api/projects'),
+        fetch('/api/achievements'),
         fetch('/api/education'),
         fetch('/api/experience'),
         fetch('/api/blog'),
       ]);
 
-      const [profileData, skillsData, projectsData, eduData, expData, blogData] = await Promise.all([
+      const [profileData, skillsData, projectsData, achData, eduData, expData, blogData] = await Promise.all([
         profileRes.json(),
         skillsRes.json(),
         projectsRes.json(),
+        achRes.json(),
         eduRes.json(),
         expRes.json(),
         blogRes.json(),
@@ -83,6 +91,7 @@ export default function Home() {
       setProfile(Array.isArray(profileData) ? null : profileData);
       setSkills(Array.isArray(skillsData) ? skillsData : []);
       setProjects(Array.isArray(projectsData) ? projectsData : []);
+      setAchievements(Array.isArray(achData) ? achData : []);
       setEducation(Array.isArray(eduData) ? eduData : []);
       setExperience(Array.isArray(expData) ? expData : []);
       setBlogPosts(Array.isArray(blogData) ? blogData : []);
@@ -97,34 +106,67 @@ export default function Home() {
     fetchAllData();
   }, [fetchAllData]);
 
-  // Listen for admin panel back navigation
+  // Check session auth on mount
+  useEffect(() => {
+    const auth = sessionStorage.getItem('admin_auth');
+    if (auth === 'true') {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  // Hash-based admin navigation
   useEffect(() => {
     const handleHashChange = () => {
       if (window.location.hash === '#admin') {
-        setIsAdmin(true);
+        if (isAuthenticated) {
+          setIsAdmin(true);
+        } else {
+          setShowLogin(true);
+        }
       } else if (window.location.hash === '') {
         setIsAdmin(false);
+        setShowLogin(false);
       }
     };
     window.addEventListener('hashchange', handleHashChange);
     if (window.location.hash === '#admin') {
-      setIsAdmin(true);
+      if (isAuthenticated) {
+        setIsAdmin(true);
+      } else {
+        setShowLogin(true);
+      }
     }
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  }, [isAuthenticated]);
 
-  const switchToAdmin = () => {
-    window.location.hash = '#admin';
+  const handleAdminClick = () => {
+    if (isAuthenticated) {
+      window.location.hash = '#admin';
+      setIsAdmin(true);
+    } else {
+      setShowLogin(true);
+    }
+  };
+
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+    setShowLogin(false);
     setIsAdmin(true);
+    window.location.hash = '#admin';
   };
 
-  const switchToPortfolio = () => {
+  const handleLoginCancel = () => {
+    setShowLogin(false);
     window.location.hash = '';
-    setIsAdmin(false);
   };
+
+  // Login screen
+  if (showLogin && !isAuthenticated) {
+    return <AdminLogin onSuccess={handleLoginSuccess} />;
+  }
 
   // Admin panel mode
-  if (isAdmin) {
+  if (isAdmin && isAuthenticated) {
     return <AdminPanel profile={profile} />;
   }
 
@@ -144,6 +186,7 @@ export default function Home() {
         <AboutSection profile={profile} totalProjects={projects.length} totalSkills={skills.length} />
         <SkillsSection skills={skills} />
         <ProjectsSection projects={projects} />
+        <AchievementsSection achievements={achievements} />
         <EducationSection education={education} />
         <ExperienceSection experience={experience} />
         <BlogSection posts={blogPosts} />
@@ -155,7 +198,7 @@ export default function Home() {
 
       {/* Floating Admin Toggle Button */}
       <Button
-        onClick={switchToAdmin}
+        onClick={handleAdminClick}
         size="sm"
         className="fixed bottom-6 right-6 z-50 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-zinc-500 hover:text-emerald-400 hover:border-emerald-500/50 shadow-lg transition-all group"
         title="Admin Panel"

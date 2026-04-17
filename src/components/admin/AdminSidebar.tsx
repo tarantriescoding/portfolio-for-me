@@ -7,6 +7,7 @@ import {
   FolderKanban,
   GraduationCap,
   Briefcase,
+  Trophy,
   FileText,
   Mail,
   ChevronLeft,
@@ -25,6 +26,7 @@ const navItems = [
   { id: 'projects', label: 'Projects', icon: FolderKanban },
   { id: 'education', label: 'Education', icon: GraduationCap },
   { id: 'experience', label: 'Experience', icon: Briefcase },
+  { id: 'achievements', label: 'Achievements', icon: Trophy },
   { id: 'blog', label: 'Blog', icon: FileText },
   { id: 'messages', label: 'Messages', icon: Mail },
 ];

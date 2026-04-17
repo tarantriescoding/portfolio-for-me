@@ -92,6 +92,19 @@ model BlogPost {
   updatedAt  DateTime @updatedAt
 }
 
+model Achievement {
+  id           String   @id @default(cuid())
+  title        String
+  description  String   @default("")
+  date         String   @default("")
+  category     String   @default("award")
+  icon         String   @default("🏆")
+  credentialUrl String  @default("")
+  order        Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
 model ContactMessage {
   id        String   @id @default(cuid())
   name      String

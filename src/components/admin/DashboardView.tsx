@@ -7,6 +7,7 @@ import {
   Mail,
   GraduationCap,
   Briefcase,
+  Trophy,
 } from 'lucide-react';
 import {
   Card,
@@ -52,6 +53,13 @@ const statCards = [
     color: 'text-amber-400',
     bg: 'bg-amber-400/10',
   },
+  {
+    key: 'totalAchievements' as const,
+    label: 'Achievements',
+    icon: Trophy,
+    color: 'text-yellow-400',
+    bg: 'bg-yellow-400/10',
+  },
 ];
 
 export function DashboardView({ stats, loading }: DashboardViewProps) {
@@ -59,8 +67,8 @@ export function DashboardView({ stats, loading }: DashboardViewProps) {
     return (
       <div className="space-y-6">
         <h2 className="text-2xl font-bold text-foreground">Dashboard</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {Array.from({ length: 4 }).map((_, i) => (
+        <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          {Array.from({ length: 5 }).map((_, i) => (
             <Card key={i} className="border-border">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <Skeleton className="h-4 w-24" />
@@ -85,7 +93,7 @@ export function DashboardView({ stats, loading }: DashboardViewProps) {
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
         {statCards.map((card) => {
           const Icon = card.icon;
           return (
