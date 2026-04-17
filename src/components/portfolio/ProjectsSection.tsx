@@ -45,23 +45,23 @@ function ProjectCard({
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <Card
-        className={`bg-zinc-900/50 border-zinc-800 overflow-hidden group hover:border-emerald-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/5 hover:-translate-y-1 ${
+        className={`holo-card bg-zinc-900/30 backdrop-blur-sm border-emerald-500/10 overflow-hidden group hover:border-emerald-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 hover:-translate-y-1 hover:scale-[1.02] ${
           project.featured
-            ? 'ring-1 ring-emerald-500/20'
+            ? 'ring-1 ring-emerald-500/30 shadow-[0_0_20px_rgba(16,185,129,0.1)]'
             : ''
         }`}
       >
         {/* Image */}
         {project.imageUrl && (
-          <div className="relative h-48 overflow-hidden bg-zinc-800">
+          <div className="relative h-48 overflow-hidden bg-zinc-800/50">
             <div
               className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
               style={{ backgroundImage: `url(${project.imageUrl})` }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 to-transparent" />
             {project.featured && (
               <div className="absolute top-3 right-3">
-                <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 font-mono text-xs">
+                <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 font-mono text-xs shadow-[0_0_10px_rgba(16,185,129,0.3)]">
                   <Star className="w-3 h-3 mr-1 fill-emerald-400" />
                   Featured
                 </Badge>
@@ -72,7 +72,7 @@ function ProjectCard({
 
         {!project.imageUrl && project.featured && (
           <div className="px-6 pt-4">
-            <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 font-mono text-xs">
+            <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 font-mono text-xs shadow-[0_0_10px_rgba(16,185,129,0.3)]">
               <Star className="w-3 h-3 mr-1 fill-emerald-400" />
               Featured
             </Badge>
@@ -94,7 +94,7 @@ function ProjectCard({
               <Badge
                 key={tech}
                 variant="outline"
-                className="text-xs font-mono border-zinc-700 text-zinc-400 bg-zinc-800/50"
+                className="text-xs font-mono border-emerald-500/10 text-zinc-400 bg-zinc-800/30 backdrop-blur-sm"
               >
                 {tech}
               </Badge>
@@ -108,7 +108,7 @@ function ProjectCard({
               asChild
               variant="outline"
               size="sm"
-              className="border-zinc-700 text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-zinc-800/50 font-mono text-xs"
+              className="border-emerald-500/10 text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-emerald-500/10 font-mono text-xs transition-all duration-200"
             >
               <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                 <Github className="w-3.5 h-3.5 mr-1.5" />
@@ -121,7 +121,7 @@ function ProjectCard({
               asChild
               variant="outline"
               size="sm"
-              className="border-zinc-700 text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-zinc-800/50 font-mono text-xs"
+              className="border-emerald-500/10 text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-emerald-500/10 font-mono text-xs transition-all duration-200"
             >
               <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="w-3.5 h-3.5 mr-1.5" />
@@ -144,7 +144,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
   if (projects.length === 0) return null;
 
   return (
-    <section id="projects" className="py-20 px-4 md:px-8 lg:px-16 bg-gray-950">
+    <section id="projects" className="py-20 px-4 md:px-8 lg:px-16 bg-transparent relative z-10">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -154,10 +154,10 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-mono">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-mono neon-text">
             <span className="text-emerald-400">#</span> Projects
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-emerald-700 rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
           <p className="text-zinc-500 mt-3 font-mono text-sm">
             $ ls ~/projects/
           </p>

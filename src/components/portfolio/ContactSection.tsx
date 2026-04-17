@@ -71,7 +71,7 @@ export default function ContactSection({ profile }: ContactSectionProps) {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 md:px-8 lg:px-16 bg-gray-950">
+    <section id="contact" className="py-20 px-4 md:px-8 lg:px-16 bg-transparent relative z-10">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -81,10 +81,10 @@ export default function ContactSection({ profile }: ContactSectionProps) {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-mono">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-mono neon-text">
             <span className="text-emerald-400">#</span> Contact
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-emerald-700 rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
           <p className="text-zinc-500 mt-3 font-mono text-sm">
             $ echo &quot;Let&apos;s connect&quot; | send_message
           </p>
@@ -99,7 +99,7 @@ export default function ContactSection({ profile }: ContactSectionProps) {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="md:col-span-2"
           >
-            <Card className="bg-zinc-900/50 border-zinc-800 h-full">
+            <Card className="holo-card tech-corners bg-zinc-900/30 backdrop-blur-sm border-emerald-500/10 h-full">
               <CardHeader>
                 <CardTitle className="text-white font-mono text-base">
                   Get in Touch
@@ -111,7 +111,7 @@ export default function ContactSection({ profile }: ContactSectionProps) {
                     href={`mailto:${profile.email}`}
                     className="flex items-center gap-3 text-zinc-400 hover:text-emerald-400 transition-colors group"
                   >
-                    <div className="p-2 rounded-lg bg-zinc-800 group-hover:bg-emerald-500/10 transition-colors">
+                    <div className="p-2 rounded-lg bg-zinc-800/30 backdrop-blur-sm group-hover:bg-emerald-500/10 transition-colors border border-emerald-500/5">
                       <Mail className="w-4 h-4" />
                     </div>
                     <span className="text-sm break-all">{profile.email}</span>
@@ -122,7 +122,7 @@ export default function ContactSection({ profile }: ContactSectionProps) {
                     href={`tel:${profile.phone}`}
                     className="flex items-center gap-3 text-zinc-400 hover:text-emerald-400 transition-colors group"
                   >
-                    <div className="p-2 rounded-lg bg-zinc-800 group-hover:bg-emerald-500/10 transition-colors">
+                    <div className="p-2 rounded-lg bg-zinc-800/30 backdrop-blur-sm group-hover:bg-emerald-500/10 transition-colors border border-emerald-500/5">
                       <Phone className="w-4 h-4" />
                     </div>
                     <span className="text-sm">{profile.phone}</span>
@@ -130,7 +130,7 @@ export default function ContactSection({ profile }: ContactSectionProps) {
                 )}
                 {profile?.location && (
                   <div className="flex items-center gap-3 text-zinc-400">
-                    <div className="p-2 rounded-lg bg-zinc-800">
+                    <div className="p-2 rounded-lg bg-zinc-800/30 backdrop-blur-sm border border-emerald-500/5">
                       <MapPin className="w-4 h-4" />
                     </div>
                     <span className="text-sm">{profile.location}</span>
@@ -143,18 +143,18 @@ export default function ContactSection({ profile }: ContactSectionProps) {
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 text-zinc-400 hover:text-emerald-400 transition-colors group"
                   >
-                    <div className="p-2 rounded-lg bg-zinc-800 group-hover:bg-emerald-500/10 transition-colors">
+                    <div className="p-2 rounded-lg bg-zinc-800/30 backdrop-blur-sm group-hover:bg-emerald-500/10 transition-colors border border-emerald-500/5">
                       <Globe className="w-4 h-4" />
                     </div>
                     <span className="text-sm break-all">{profile.website}</span>
                   </a>
                 )}
 
-                <Separator className="bg-zinc-800" />
+                <Separator className="bg-emerald-500/10" />
 
                 {/* Social Links */}
                 <div>
-                  <p className="text-zinc-500 text-xs font-mono mb-3">
+                  <p className="text-emerald-600 text-xs font-mono mb-3">
                     {'// social links'}
                   </p>
                   <div className="flex items-center gap-3">
@@ -163,7 +163,7 @@ export default function ContactSection({ profile }: ContactSectionProps) {
                         href={profile.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2.5 rounded-lg border border-zinc-800 text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-zinc-800/50 transition-all"
+                        className="p-2.5 rounded-lg border border-emerald-500/10 text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-emerald-500/10 hover:shadow-[0_0_10px_rgba(16,185,129,0.2)] transition-all duration-200"
                       >
                         <Github className="w-4 h-4" />
                       </a>
@@ -173,7 +173,7 @@ export default function ContactSection({ profile }: ContactSectionProps) {
                         href={profile.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2.5 rounded-lg border border-zinc-800 text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-zinc-800/50 transition-all"
+                        className="p-2.5 rounded-lg border border-emerald-500/10 text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-emerald-500/10 hover:shadow-[0_0_10px_rgba(16,185,129,0.2)] transition-all duration-200"
                       >
                         <Linkedin className="w-4 h-4" />
                       </a>
@@ -183,7 +183,7 @@ export default function ContactSection({ profile }: ContactSectionProps) {
                         href={profile.twitter}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2.5 rounded-lg border border-zinc-800 text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-zinc-800/50 transition-all"
+                        className="p-2.5 rounded-lg border border-emerald-500/10 text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-emerald-500/10 hover:shadow-[0_0_10px_rgba(16,185,129,0.2)] transition-all duration-200"
                       >
                         <Twitter className="w-4 h-4" />
                       </a>
@@ -202,7 +202,7 @@ export default function ContactSection({ profile }: ContactSectionProps) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="md:col-span-3"
           >
-            <Card className="bg-zinc-900/50 border-zinc-800">
+            <Card className="holo-card bg-zinc-900/30 backdrop-blur-sm border-emerald-500/10">
               <CardContent className="p-6">
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid sm:grid-cols-2 gap-4">
@@ -217,7 +217,7 @@ export default function ContactSection({ profile }: ContactSectionProps) {
                         onChange={handleChange}
                         placeholder="John Doe"
                         required
-                        className="bg-zinc-800/50 border-zinc-700 text-zinc-200 placeholder:text-zinc-600 focus:border-emerald-500/50 focus:ring-emerald-500/20 font-mono text-sm"
+                        className="bg-zinc-900/30 backdrop-blur-sm border-emerald-500/10 text-zinc-200 placeholder:text-zinc-600 focus:border-emerald-500/50 focus:ring-emerald-500/20 focus:shadow-[0_0_10px_rgba(16,185,129,0.15)] font-mono text-sm transition-all duration-200"
                       />
                     </div>
                     <div className="space-y-2">
@@ -232,7 +232,7 @@ export default function ContactSection({ profile }: ContactSectionProps) {
                         onChange={handleChange}
                         placeholder="john@example.com"
                         required
-                        className="bg-zinc-800/50 border-zinc-700 text-zinc-200 placeholder:text-zinc-600 focus:border-emerald-500/50 focus:ring-emerald-500/20 font-mono text-sm"
+                        className="bg-zinc-900/30 backdrop-blur-sm border-emerald-500/10 text-zinc-200 placeholder:text-zinc-600 focus:border-emerald-500/50 focus:ring-emerald-500/20 focus:shadow-[0_0_10px_rgba(16,185,129,0.15)] font-mono text-sm transition-all duration-200"
                       />
                     </div>
                   </div>
@@ -246,7 +246,7 @@ export default function ContactSection({ profile }: ContactSectionProps) {
                       value={formData.subject}
                       onChange={handleChange}
                       placeholder="What's this about?"
-                      className="bg-zinc-800/50 border-zinc-700 text-zinc-200 placeholder:text-zinc-600 focus:border-emerald-500/50 focus:ring-emerald-500/20 font-mono text-sm"
+                      className="bg-zinc-900/30 backdrop-blur-sm border-emerald-500/10 text-zinc-200 placeholder:text-zinc-600 focus:border-emerald-500/50 focus:ring-emerald-500/20 focus:shadow-[0_0_10px_rgba(16,185,129,0.15)] font-mono text-sm transition-all duration-200"
                     />
                   </div>
 
@@ -262,14 +262,14 @@ export default function ContactSection({ profile }: ContactSectionProps) {
                       placeholder="Your message..."
                       required
                       rows={5}
-                      className="bg-zinc-800/50 border-zinc-700 text-zinc-200 placeholder:text-zinc-600 focus:border-emerald-500/50 focus:ring-emerald-500/20 font-mono text-sm resize-none"
+                      className="bg-zinc-900/30 backdrop-blur-sm border-emerald-500/10 text-zinc-200 placeholder:text-zinc-600 focus:border-emerald-500/50 focus:ring-emerald-500/20 focus:shadow-[0_0_10px_rgba(16,185,129,0.15)] font-mono text-sm resize-none transition-all duration-200"
                     />
                   </div>
 
                   <Button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-mono shadow-lg shadow-emerald-600/20 hover:shadow-emerald-500/30 transition-all"
+                    className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-mono shadow-lg shadow-emerald-600/30 hover:shadow-emerald-500/40 transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]"
                   >
                     {loading ? (
                       <>

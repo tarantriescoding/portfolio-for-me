@@ -17,6 +17,7 @@ import ExperienceSection from '@/components/portfolio/ExperienceSection';
 import BlogSection from '@/components/portfolio/BlogSection';
 import ContactSection from '@/components/portfolio/ContactSection';
 import PortfolioFooter from '@/components/portfolio/PortfolioFooter';
+import { SciFiBackground } from '@/components/portfolio/SciFiBackground';
 import type {
   ProfileData,
   SkillData,
@@ -26,6 +27,14 @@ import type {
   ExperienceData,
   BlogPostData,
 } from '@/lib/types';
+
+function TechDivider() {
+  return (
+    <div className="relative py-0">
+      <div className="tech-divider" />
+    </div>
+  );
+}
 
 function PortfolioSkeleton() {
   return (
@@ -176,20 +185,31 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 flex flex-col">
+    <div className="min-h-screen bg-gray-950 flex flex-col relative">
+      {/* Sci-Fi Global Background */}
+      <SciFiBackground />
+
       {/* Navigation */}
       <PortfolioNav profile={profile} />
 
       {/* Main Content */}
-      <main className="flex-1">
+      <main className="flex-1 relative z-10">
         <HeroSection profile={profile} />
+        <TechDivider />
         <AboutSection profile={profile} totalProjects={projects.length} totalSkills={skills.length} />
+        <TechDivider />
         <SkillsSection skills={skills} />
+        <TechDivider />
         <ProjectsSection projects={projects} />
+        <TechDivider />
         <AchievementsSection achievements={achievements} />
+        <TechDivider />
         <EducationSection education={education} />
+        <TechDivider />
         <ExperienceSection experience={experience} />
+        <TechDivider />
         <BlogSection posts={blogPosts} />
+        <TechDivider />
         <ContactSection profile={profile} />
       </main>
 

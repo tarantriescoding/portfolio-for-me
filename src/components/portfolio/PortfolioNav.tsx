@@ -56,7 +56,7 @@ export default function PortfolioNav({ profile }: PortfolioNavProps) {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-gray-950/95 backdrop-blur-md border-b border-zinc-800 shadow-lg shadow-black/20'
+          ? 'bg-zinc-950/70 backdrop-blur-xl border-b border-emerald-500/10 shadow-lg shadow-black/20'
           : 'bg-transparent'
       }`}
     >
@@ -68,7 +68,7 @@ export default function PortfolioNav({ profile }: PortfolioNavProps) {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          className="flex items-center gap-2 text-emerald-400 font-mono font-bold text-lg hover:text-emerald-300 transition-colors"
+          className="flex items-center gap-2 text-emerald-400 font-mono font-bold text-lg hover:text-emerald-300 transition-colors neon-text"
         >
           <Terminal className="w-5 h-5" />
           <span className="hidden sm:inline">
@@ -83,9 +83,9 @@ export default function PortfolioNav({ profile }: PortfolioNavProps) {
             <button
               key={link.href}
               onClick={() => handleNavClick(link.href)}
-              className="px-3 py-2 text-sm text-zinc-400 hover:text-emerald-400 transition-colors font-mono rounded-md hover:bg-zinc-800/50"
+              className="px-3 py-2 text-sm text-zinc-400 hover:text-emerald-400 transition-colors font-mono rounded-md hover:bg-emerald-500/10 glitch-hover"
             >
-              <span className="text-zinc-600 mr-1">&gt;</span>
+              <span className="text-emerald-600 mr-1">&gt;</span>
               {link.label}
             </button>
           ))}
@@ -99,7 +99,7 @@ export default function PortfolioNav({ profile }: PortfolioNavProps) {
                 href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-zinc-400 hover:text-emerald-400 transition-colors"
+                className="p-2 text-zinc-400 hover:text-emerald-400 transition-colors hover:shadow-[0_0_8px_rgba(16,185,129,0.3)]"
               >
                 <Github className="w-4 h-4" />
               </a>
@@ -109,7 +109,7 @@ export default function PortfolioNav({ profile }: PortfolioNavProps) {
                 href={profile.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-zinc-400 hover:text-emerald-400 transition-colors"
+                className="p-2 text-zinc-400 hover:text-emerald-400 transition-colors hover:shadow-[0_0_8px_rgba(16,185,129,0.3)]"
               >
                 <Linkedin className="w-4 h-4" />
               </a>
@@ -119,7 +119,7 @@ export default function PortfolioNav({ profile }: PortfolioNavProps) {
                 href={profile.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-zinc-400 hover:text-emerald-400 transition-colors"
+                className="p-2 text-zinc-400 hover:text-emerald-400 transition-colors hover:shadow-[0_0_8px_rgba(16,185,129,0.3)]"
               >
                 <Twitter className="w-4 h-4" />
               </a>
@@ -139,10 +139,10 @@ export default function PortfolioNav({ profile }: PortfolioNavProps) {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="bg-gray-950 border-zinc-800 w-72"
+              className="bg-zinc-950/70 backdrop-blur-xl border-emerald-500/10 w-72"
             >
               <SheetHeader>
-                <SheetTitle className="text-emerald-400 font-mono flex items-center gap-2">
+                <SheetTitle className="text-emerald-400 font-mono flex items-center gap-2 neon-text">
                   <Terminal className="w-4 h-4" />
                   Navigation
                 </SheetTitle>
@@ -152,7 +152,7 @@ export default function PortfolioNav({ profile }: PortfolioNavProps) {
                   <SheetClose asChild key={link.href}>
                     <button
                       onClick={() => handleNavClick(link.href)}
-                      className="px-4 py-3 text-left text-zinc-300 hover:text-emerald-400 hover:bg-zinc-800/50 transition-colors font-mono text-sm rounded-md"
+                      className="px-4 py-3 text-left text-zinc-300 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors font-mono text-sm rounded-md glitch-hover"
                     >
                       <span className="text-emerald-600 mr-2">&gt;</span>
                       {link.label}

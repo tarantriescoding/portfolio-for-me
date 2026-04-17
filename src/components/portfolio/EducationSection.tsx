@@ -29,16 +29,16 @@ function TimelineItem({
     >
       {/* Timeline line */}
       {!isLast && (
-        <div className="absolute left-[11px] top-8 bottom-0 w-px bg-gradient-to-b from-emerald-500/50 to-zinc-800" />
+        <div className="absolute left-[11px] top-8 bottom-0 w-px bg-gradient-to-b from-emerald-500 to-cyan-500/20 shadow-[0_0_6px_rgba(16,185,129,0.3)]" />
       )}
 
       {/* Timeline dot */}
-      <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-zinc-900 border-2 border-emerald-500 flex items-center justify-center z-10">
+      <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-zinc-900 border-2 border-emerald-500 flex items-center justify-center z-10 shadow-[0_0_10px_rgba(16,185,129,0.3)]">
         <GraduationCap className="w-3 h-3 text-emerald-400" />
       </div>
 
       {/* Content Card */}
-      <div className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-5 hover:border-emerald-500/20 transition-all duration-300 group hover:shadow-lg hover:shadow-emerald-500/5">
+      <div className="holo-card bg-zinc-900/30 backdrop-blur-sm border border-emerald-500/10 rounded-lg p-5 hover:border-emerald-500/20 transition-all duration-300 group hover:shadow-lg hover:shadow-emerald-500/10 hover:scale-[1.02]">
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
           <div>
             <h3 className="text-white font-semibold text-base group-hover:text-emerald-400 transition-colors">
@@ -52,7 +52,7 @@ function TimelineItem({
           </div>
           <Badge
             variant="outline"
-            className="border-zinc-700 text-zinc-400 bg-zinc-800/50 font-mono text-xs w-fit shrink-0"
+            className="border-emerald-500/10 text-zinc-400 bg-zinc-800/30 backdrop-blur-sm font-mono text-xs w-fit shrink-0"
           >
             <Calendar className="w-3 h-3 mr-1" />
             {entry.startYear} — {entry.endYear}
@@ -60,7 +60,7 @@ function TimelineItem({
         </div>
 
         <div className="flex items-center gap-1.5 text-zinc-400 text-sm mb-2">
-          <Building2 className="w-3.5 h-3.5 text-zinc-500" />
+          <Building2 className="w-3.5 h-3.5 text-emerald-500/50" />
           {entry.institution}
         </div>
 
@@ -90,7 +90,7 @@ export default function EducationSection({ education }: EducationSectionProps) {
   if (education.length === 0) return null;
 
   return (
-    <section id="education" className="py-20 px-4 md:px-8 lg:px-16 bg-black">
+    <section id="education" className="py-20 px-4 md:px-8 lg:px-16 bg-transparent relative z-10">
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -100,10 +100,10 @@ export default function EducationSection({ education }: EducationSectionProps) {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-mono">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-mono neon-text">
             <span className="text-emerald-400">#</span> Education
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-emerald-700 rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
           <p className="text-zinc-500 mt-3 font-mono text-sm">
             $ cat ~/education.log
           </p>

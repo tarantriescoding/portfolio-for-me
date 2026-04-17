@@ -55,14 +55,14 @@ function ExperienceTimelineItem({
     >
       {/* Timeline line */}
       {!isLast && (
-        <div className="absolute left-[11px] top-8 bottom-0 w-px bg-gradient-to-b from-emerald-500/50 to-zinc-800" />
+        <div className="absolute left-[11px] top-8 bottom-0 w-px bg-gradient-to-b from-emerald-500 to-cyan-500/20 shadow-[0_0_6px_rgba(16,185,129,0.3)]" />
       )}
 
       {/* Timeline dot */}
       <div
         className={`absolute left-0 top-1 w-6 h-6 rounded-full flex items-center justify-center z-10 ${
           entry.current
-            ? 'bg-emerald-500/20 border-2 border-emerald-500 shadow-lg shadow-emerald-500/20'
+            ? 'bg-emerald-500/20 border-2 border-emerald-500 shadow-[0_0_16px_rgba(16,185,129,0.5)] animate-pulse'
             : 'bg-zinc-900 border-2 border-zinc-600'
         }`}
       >
@@ -75,10 +75,10 @@ function ExperienceTimelineItem({
 
       {/* Content Card */}
       <div
-        className={`bg-zinc-900/50 border rounded-lg p-5 transition-all duration-300 group hover:shadow-lg ${
+        className={`holo-card bg-zinc-900/30 backdrop-blur-sm border rounded-lg p-5 transition-all duration-300 group hover:shadow-lg hover:scale-[1.02] ${
           entry.current
-            ? 'border-emerald-500/30 hover:shadow-emerald-500/10'
-            : 'border-zinc-800 hover:border-emerald-500/20 hover:shadow-emerald-500/5'
+            ? 'border-emerald-500/30 hover:shadow-emerald-500/15 shadow-[0_0_20px_rgba(16,185,129,0.08)]'
+            : 'border-emerald-500/10 hover:border-emerald-500/20 hover:shadow-emerald-500/10'
         }`}
       >
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
@@ -92,13 +92,13 @@ function ExperienceTimelineItem({
           </div>
           <div className="flex items-center gap-2 shrink-0">
             {entry.current && (
-              <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 font-mono text-xs">
+              <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 font-mono text-xs shadow-[0_0_10px_rgba(16,185,129,0.3)]">
                 Current
               </Badge>
             )}
             <Badge
               variant="outline"
-              className="border-zinc-700 text-zinc-400 bg-zinc-800/50 font-mono text-xs"
+              className="border-emerald-500/10 text-zinc-400 bg-zinc-800/30 backdrop-blur-sm font-mono text-xs"
             >
               <Calendar className="w-3 h-3 mr-1" />
               {duration}
@@ -118,7 +118,7 @@ function ExperienceTimelineItem({
               <Badge
                 key={tech}
                 variant="outline"
-                className="text-xs font-mono border-zinc-700 text-zinc-400 bg-zinc-800/50"
+                className="text-xs font-mono border-emerald-500/10 text-zinc-400 bg-zinc-800/30 backdrop-blur-sm"
               >
                 {tech}
               </Badge>
@@ -139,7 +139,7 @@ export default function ExperienceSection({ experience }: ExperienceSectionProps
   if (experience.length === 0) return null;
 
   return (
-    <section id="experience" className="py-20 px-4 md:px-8 lg:px-16 bg-gray-950">
+    <section id="experience" className="py-20 px-4 md:px-8 lg:px-16 bg-transparent relative z-10">
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -149,10 +149,10 @@ export default function ExperienceSection({ experience }: ExperienceSectionProps
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-mono">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-mono neon-text">
             <span className="text-emerald-400">#</span> Experience
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-emerald-700 rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
           <p className="text-zinc-500 mt-3 font-mono text-sm">
             $ cat ~/experience.log
           </p>

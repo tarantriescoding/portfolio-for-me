@@ -12,13 +12,13 @@ interface AchievementsSectionProps {
 }
 
 const categoryColors: Record<string, string> = {
-  hackathon: 'text-amber-400 border-amber-500/30 bg-amber-500/10',
-  award: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
-  certification: 'text-violet-400 border-violet-500/30 bg-violet-500/10',
-  publication: 'text-sky-400 border-sky-500/30 bg-sky-500/10',
-  competition: 'text-rose-400 border-rose-500/30 bg-rose-500/10',
-  open_source: 'text-teal-400 border-teal-500/30 bg-teal-500/10',
-  scholarship: 'text-yellow-400 border-yellow-500/30 bg-yellow-500/10',
+  hackathon: 'text-amber-400 border-amber-500/30 bg-amber-500/10 shadow-[0_0_8px_rgba(245,158,11,0.2)]',
+  award: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_8px_rgba(16,185,129,0.2)]',
+  certification: 'text-violet-400 border-violet-500/30 bg-violet-500/10 shadow-[0_0_8px_rgba(167,139,250,0.2)]',
+  publication: 'text-cyan-400 border-cyan-500/30 bg-cyan-500/10 shadow-[0_0_8px_rgba(34,211,238,0.2)]',
+  competition: 'text-rose-400 border-rose-500/30 bg-rose-500/10 shadow-[0_0_8px_rgba(251,113,133,0.2)]',
+  open_source: 'text-teal-400 border-teal-500/30 bg-teal-500/10 shadow-[0_0_8px_rgba(20,184,166,0.2)]',
+  scholarship: 'text-yellow-400 border-yellow-500/30 bg-yellow-500/10 shadow-[0_0_8px_rgba(250,204,21,0.2)]',
 };
 
 const categoryLabels: Record<string, string> = {
@@ -40,7 +40,7 @@ function AchievementCard({
 }) {
   const colorClass =
     categoryColors[achievement.category] ||
-    'text-emerald-400 border-emerald-500/30 bg-emerald-500/10';
+    'text-emerald-400 border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_8px_rgba(16,185,129,0.2)]';
   const label =
     categoryLabels[achievement.category] || achievement.category;
 
@@ -51,11 +51,11 @@ function AchievementCard({
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.08 }}
     >
-      <Card className="bg-zinc-900/50 border-zinc-800 hover:border-emerald-500/20 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/5 group h-full">
+      <Card className="holo-card bg-zinc-900/30 backdrop-blur-sm border-emerald-500/10 hover:border-emerald-500/20 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 group h-full hover:scale-[1.02]">
         <CardContent className="p-5">
           <div className="flex items-start gap-4">
             {/* Icon */}
-            <div className="shrink-0 text-3xl mt-0.5 group-hover:scale-110 transition-transform duration-300">
+            <div className="shrink-0 text-3xl mt-0.5 group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_8px_rgba(16,185,129,0.3)]">
               {achievement.icon || '🏆'}
             </div>
 
@@ -116,7 +116,7 @@ export default function AchievementsSection({
   if (achievements.length === 0) return null;
 
   return (
-    <section id="achievements" className="py-20 px-4 md:px-8 lg:px-16 bg-black">
+    <section id="achievements" className="py-20 px-4 md:px-8 lg:px-16 bg-transparent relative z-10">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -126,10 +126,10 @@ export default function AchievementsSection({
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-mono">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-mono neon-text">
             <span className="text-emerald-400">#</span> Achievements
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-emerald-700 rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
           <p className="text-zinc-500 mt-3 font-mono text-sm">
             $ ls ~/achievements/
           </p>

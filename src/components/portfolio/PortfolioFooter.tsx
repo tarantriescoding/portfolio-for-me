@@ -12,12 +12,12 @@ export default function PortfolioFooter({ profile }: PortfolioFooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-black border-t border-zinc-800">
+    <footer className="bg-transparent border-t border-emerald-500/10 relative z-10">
       <div className="max-w-6xl mx-auto px-4 md:px-8 lg:px-16 py-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo + Copyright */}
           <div className="flex flex-col items-center md:items-start gap-2">
-            <div className="flex items-center gap-2 text-emerald-400 font-mono font-bold text-sm">
+            <div className="flex items-center gap-2 text-emerald-400 font-mono font-bold text-sm neon-text">
               <Terminal className="w-4 h-4" />
               <span>{profile?.name ? profile.name.split(' ')[0] : 'Portfolio'}</span>
               <span className="text-zinc-600">~$</span>
@@ -34,7 +34,7 @@ export default function PortfolioFooter({ profile }: PortfolioFooterProps) {
                 href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-zinc-500 hover:text-emerald-400 transition-colors"
+                className="p-2 text-zinc-500 hover:text-emerald-400 transition-colors hover:shadow-[0_0_8px_rgba(16,185,129,0.3)]"
               >
                 <Github className="w-4 h-4" />
               </a>
@@ -44,7 +44,7 @@ export default function PortfolioFooter({ profile }: PortfolioFooterProps) {
                 href={profile.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-zinc-500 hover:text-emerald-400 transition-colors"
+                className="p-2 text-zinc-500 hover:text-emerald-400 transition-colors hover:shadow-[0_0_8px_rgba(16,185,129,0.3)]"
               >
                 <Linkedin className="w-4 h-4" />
               </a>
@@ -54,7 +54,7 @@ export default function PortfolioFooter({ profile }: PortfolioFooterProps) {
                 href={profile.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-zinc-500 hover:text-emerald-400 transition-colors"
+                className="p-2 text-zinc-500 hover:text-emerald-400 transition-colors hover:shadow-[0_0_8px_rgba(16,185,129,0.3)]"
               >
                 <Twitter className="w-4 h-4" />
               </a>
@@ -69,7 +69,7 @@ export default function PortfolioFooter({ profile }: PortfolioFooterProps) {
           </div>
         </div>
 
-        <Separator className="my-6 bg-zinc-800/50" />
+        <Separator className="my-6 bg-emerald-500/10" />
 
         <div className="text-center">
           <p className="text-zinc-700 text-xs font-mono">

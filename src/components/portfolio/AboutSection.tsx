@@ -15,7 +15,7 @@ interface AboutSectionProps {
 
 const stats = [
   { icon: FolderGit2, label: 'Projects', color: 'text-emerald-400' },
-  { icon: Cpu, label: 'Skills', color: 'text-emerald-400' },
+  { icon: Cpu, label: 'Skills', color: 'text-cyan-400' },
   { icon: GraduationCap, label: 'B.Tech CSE', color: 'text-emerald-400' },
 ];
 
@@ -38,7 +38,7 @@ export default function AboutSection({
   const statValues = [totalProjects, totalSkills, null];
 
   return (
-    <section id="about" className="py-20 px-4 md:px-8 lg:px-16 bg-gray-950">
+    <section id="about" className="py-20 px-4 md:px-8 lg:px-16 bg-transparent relative z-10">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -48,10 +48,10 @@ export default function AboutSection({
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-mono">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-mono neon-text">
             <span className="text-emerald-400">#</span> About Me
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-emerald-700 rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
         </motion.div>
 
         <div className="grid md:grid-cols-5 gap-8 items-start">
@@ -63,16 +63,16 @@ export default function AboutSection({
             transition={{ duration: 0.6, delay: 0.2 }}
             className="md:col-span-2 flex justify-center md:justify-end"
           >
-            <Card className="bg-zinc-900/50 border-zinc-800 p-6 w-full max-w-xs">
+            <Card className="holo-card tech-corners bg-zinc-900/30 backdrop-blur-sm border-emerald-500/10 p-6 w-full max-w-xs hover:scale-[1.02] transition-transform duration-300">
               <CardContent className="p-0 flex flex-col items-center">
                 <div className="relative">
-                  <Avatar className="w-32 h-32 border-2 border-emerald-500/50 shadow-lg shadow-emerald-500/10">
+                  <Avatar className="w-32 h-32 border-2 border-emerald-500/50 shadow-lg shadow-emerald-500/20">
                     <AvatarImage src={profile?.avatarUrl || undefined} alt={name} />
-                    <AvatarFallback className="bg-zinc-800 text-emerald-400 text-2xl font-mono">
+                    <AvatarFallback className="bg-zinc-800/50 text-emerald-400 text-2xl font-mono">
                       {initials}
                     </AvatarFallback>
                   </Avatar>
-                  <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full border-2 border-zinc-900" />
+                  <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full border-2 border-zinc-900 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
                 </div>
                 <h3 className="mt-4 text-xl font-bold text-white">{name}</h3>
                 <p className="text-emerald-400 font-mono text-sm mt-1">{title}</p>
@@ -82,7 +82,7 @@ export default function AboutSection({
                     {location}
                   </div>
                 )}
-                <Separator className="my-4 bg-zinc-800" />
+                <Separator className="my-4 bg-emerald-500/10" />
                 <div className="w-full space-y-3">
                   {stats.map((stat, i) => (
                     <div
@@ -93,7 +93,7 @@ export default function AboutSection({
                         <stat.icon className={`w-4 h-4 ${stat.color}`} />
                         {stat.label}
                       </div>
-                      <span className="text-emerald-400 font-mono font-bold text-sm">
+                      <span className="text-emerald-400 font-mono font-bold text-sm shadow-[0_0_6px_rgba(16,185,129,0.4)]">
                         {statValues[i] !== null ? statValues[i] : '—'}
                       </span>
                     </div>
@@ -111,17 +111,17 @@ export default function AboutSection({
             transition={{ duration: 0.6, delay: 0.3 }}
             className="md:col-span-3"
           >
-            <Card className="bg-zinc-900/50 border-zinc-800">
+            <Card className="holo-card bg-zinc-900/30 backdrop-blur-sm border-emerald-500/10">
               <CardContent className="p-6 md:p-8">
-                <div className="font-mono text-sm text-zinc-600 mb-4">
-                  <span className="text-emerald-500">$</span> cat about.md
+                <div className="font-mono text-sm text-emerald-600 mb-4">
+                  <span className="text-emerald-400">$</span> cat about.md
                 </div>
                 <p className="text-zinc-300 leading-relaxed text-base md:text-lg whitespace-pre-line">
                   {bio}
                 </p>
-                <Separator className="my-6 bg-zinc-800" />
-                <div className="font-mono text-sm text-zinc-600">
-                  <span className="text-emerald-500">$</span> echo &quot;Always learning, always building.&quot;
+                <Separator className="my-6 bg-emerald-500/10" />
+                <div className="font-mono text-sm text-emerald-600">
+                  <span className="text-emerald-400">$</span> echo &quot;Always learning, always building.&quot;
                 </div>
               </CardContent>
             </Card>

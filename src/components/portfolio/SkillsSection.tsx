@@ -28,12 +28,12 @@ function SkillBar({ skill, index }: { skill: SkillData; index: number }) {
           )}
           <span className="text-zinc-200 text-sm font-medium">{skill.name}</span>
         </div>
-        <span className="text-emerald-400 font-mono text-xs">{skill.level}%</span>
+        <span className="text-emerald-400 font-mono text-xs shadow-[0_0_6px_rgba(16,185,129,0.4)]">{skill.level}%</span>
       </div>
       <div className="relative">
         <Progress
           value={skill.level}
-          className="h-2 bg-zinc-800 [&_[data-slot=progress-indicator]]:bg-emerald-500 [&_[data-slot=progress-indicator]]:shadow-[0_0_10px_rgba(16,185,129,0.3)] [&_[data-slot=progress-indicator]]:transition-all [&_[data-slot=progress-indicator]]:duration-1000"
+          className="h-2 bg-zinc-800/50 backdrop-blur-sm [&_[data-slot=progress-indicator]]:bg-gradient-to-r [&_[data-slot=progress-indicator]]:from-emerald-500 [&_[data-slot=progress-indicator]]:to-cyan-400 [&_[data-slot=progress-indicator]]:shadow-[0_0_16px_rgba(16,185,129,0.6)] [&_[data-slot=progress-indicator]]:transition-all [&_[data-slot=progress-indicator]]:duration-1000"
         />
       </div>
     </motion.div>
@@ -56,7 +56,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
   if (skills.length === 0) return null;
 
   return (
-    <section id="skills" className="py-20 px-4 md:px-8 lg:px-16 bg-black">
+    <section id="skills" className="py-20 px-4 md:px-8 lg:px-16 bg-transparent relative z-10">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -66,10 +66,10 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-mono">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-mono neon-text">
             <span className="text-emerald-400">#</span> Skills
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-emerald-700 rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
           <p className="text-zinc-500 mt-3 font-mono text-sm">
             $ ls ~/skills/
           </p>
@@ -83,12 +83,12 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
           transition={{ duration: 0.6, delay: 0.1 }}
         >
           <Tabs value={activeCategory} onValueChange={setActiveCategory}>
-            <TabsList className="bg-zinc-900 border border-zinc-800 flex-wrap h-auto gap-1 p-1">
+            <TabsList className="bg-zinc-900/30 backdrop-blur-sm border border-emerald-500/10 flex-wrap h-auto gap-1 p-1">
               {categories.map((cat) => (
                 <TabsTrigger
                   key={cat}
                   value={cat}
-                  className="data-[state=active]:bg-emerald-500/10 data-[state=active]:text-emerald-400 data-[state=active]:border-emerald-500/50 text-zinc-400 font-mono text-xs px-3 py-1.5 border border-transparent rounded-md"
+                  className="data-[state=active]:bg-emerald-500/10 data-[state=active]:text-emerald-400 data-[state=active]:border-emerald-500/50 data-[state=active]:shadow-[0_0_10px_rgba(16,185,129,0.3)] text-zinc-400 font-mono text-xs px-3 py-1.5 border border-transparent rounded-md transition-all duration-200"
                 >
                   {cat}
                 </TabsTrigger>
