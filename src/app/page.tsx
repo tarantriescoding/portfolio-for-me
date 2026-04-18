@@ -186,7 +186,7 @@ export default function Home() {
 
   // Login screen
   if (showLogin && !isAuthenticated) {
-    return <AdminLogin onSuccess={handleLoginSuccess} />;
+    return <AdminLogin onSuccess={handleLoginSuccess} onCancel={handleLoginCancel} />;
   }
 
   // Admin panel mode
