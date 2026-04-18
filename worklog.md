@@ -124,3 +124,24 @@ Stage Summary:
 - Glass-morphism cards, HUD frame, hexagonal grid, neon glows
 - All sections are transparent so animated background shows through
 - Lint passes with 0 errors and 0 warnings
+---
+Task ID: 1
+Agent: Main Agent
+Task: Add uploaded CV to portfolio website
+
+Work Log:
+- Read all project files to understand current architecture (HeroSection, AboutSection, ProfileEditor, API routes, types, schema)
+- Confirmed Profile model already has `resumeUrl` field, HeroSection already has "Download Resume" button
+- Copied CV from `upload/CV_Tarandeep_2K23CSUN01233_AIML 5-A.pdf` to `public/cv/Tarandeep_CV.pdf`
+- Updated database Profile record: set `resumeUrl = '/cv/Tarandeep_CV.pdf'` via Prisma db execute
+- Enhanced AboutSection with a styled "Download CV" button (using FileText + Download icons from lucide-react)
+- Added imports for Download, FileText icons and Button component to AboutSection
+- Verified: Profile API returns resumeUrl correctly, CV file accessible at /cv/Tarandeep_CV.pdf (200, 88KB PDF)
+- ESLint passes with zero errors
+
+Stage Summary:
+- CV file served statically from `public/cv/Tarandeep_CV.pdf`
+- Database profile updated with resumeUrl
+- AboutSection now shows a "Download CV" button below the stats section (inside the avatar card)
+- HeroSection already shows "Download Resume" button when profile?.resumeUrl is set
+- Both locations provide CV download functionality

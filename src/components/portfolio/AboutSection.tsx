@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { MapPin, FolderGit2, Cpu, GraduationCap } from 'lucide-react';
+import { MapPin, FolderGit2, Cpu, GraduationCap, Download, FileText } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import type { ProfileData } from '@/lib/types';
@@ -99,6 +100,21 @@ export default function AboutSection({
                     </div>
                   ))}
                 </div>
+                {profile?.resumeUrl && (
+                  <>
+                    <Separator className="my-2 bg-emerald-500/10" />
+                    <Button
+                      asChild
+                      className="w-full bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 hover:text-emerald-300 border border-emerald-500/30 hover:border-emerald-500/50 font-mono text-xs shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      <a href={profile.resumeUrl} target="_blank" rel="noopener noreferrer" download>
+                        <FileText className="w-3.5 h-3.5 mr-2" />
+                        Download CV
+                        <Download className="w-3 h-3 ml-1" />
+                      </a>
+                    </Button>
+                  </>
+                )}
               </CardContent>
             </Card>
           </motion.div>
