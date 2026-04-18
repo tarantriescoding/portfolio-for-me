@@ -2,8 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Button } from '@/components/ui/button';
-import { Shield } from 'lucide-react';
 import { AdminPanel } from '@/components/admin/AdminPanel';
 import AdminLogin from '@/components/admin/AdminLogin';
 import PortfolioNav from '@/components/portfolio/PortfolioNav';
@@ -148,6 +146,23 @@ export default function Home() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, [isAuthenticated]);
 
+  // Hidden admin shortcut: Ctrl+Shift+Y
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'y') {
+        e.preventDefault();
+        if (isAuthenticated) {
+          window.location.hash = '#admin';
+          setIsAdmin(true);
+        } else {
+          setShowLogin(true);
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isAuthenticated]);
+
   const handleAdminClick = () => {
     if (isAuthenticated) {
       window.location.hash = '#admin';
@@ -215,16 +230,6 @@ export default function Home() {
 
       {/* Footer */}
       <PortfolioFooter profile={profile} />
-
-      {/* Floating Admin Toggle Button */}
-      <Button
-        onClick={handleAdminClick}
-        size="sm"
-        className="fixed bottom-6 right-6 z-50 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-zinc-500 hover:text-emerald-400 hover:border-emerald-500/50 shadow-lg transition-all group"
-        title="Admin Panel"
-      >
-        <Shield className="w-4 h-4 group-hover:scale-110 transition-transform" />
-      </Button>
     </div>
   );
 }
